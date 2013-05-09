@@ -1,4 +1,4 @@
-minemage
+Minemage
 ========
 
 Development repository for MineMage Minecraft mod.
