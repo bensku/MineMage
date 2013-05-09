@@ -51,7 +51,7 @@ public class MainMod {
 	
 	//!!Biomes
 	public static BiomeGenBase BiomeRainLand;
-	
+	public static BiomeGenBase BiomeSky;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
@@ -97,12 +97,15 @@ public class MainMod {
 		//LanguageRegistry.instance().addStringLocalization("entity.bensku_MineMage_mod.Common.EntityElf", "Forest elf");
 		//!!Biomes
 		//Rainland (always rains :D)
-		BiomeRainLand = new BiomeGenRainLand(BiomeLib.getBiomeIdAndGotoNext()).setColor(112).setBiomeName("Rainland").setTemperatureRainfall(0.5F, 2.0F);
+		BiomeRainLand = new BiomeGenRainLand(BiomeLib.getBiomeId(1)).setColor(112).setBiomeName("Rainland").setTemperatureRainfall(0.5F, 2.0F);
         GameRegistry.addBiome(BiomeRainLand);
+        //Sky (for sky dimension, no longer end biome with endermen...)
+		BiomeSky = new BiomeGenSky(BiomeLib.getBiomeId(2)).setColor(112).setBiomeName("Sky");
+        GameRegistry.addBiome(BiomeSky);
         //!!Dimensions
         //Sky
-        DimensionManager.registerProviderType(25, WorldProviderSky.class, false);
-        DimensionManager.registerDimension(25, 25);
+        DimensionManager.registerProviderType(DimensionLib.getDimId(1), WorldProviderSky.class, false);
+        DimensionManager.registerDimension(DimensionLib.getDimId(1), DimensionLib.getDimId(1));
         //!!World generators
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());
         //!!Creative tabs

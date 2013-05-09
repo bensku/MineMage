@@ -10,7 +10,7 @@ public class ItemCopperIngot extends Item {
 		super(id);
 		
 		// Constructor Configuration
-        	maxStackSize = 64;
+        	maxStackSize = 1;
         	setCreativeTab(MainMod.tabMineMage);
 	}
 	

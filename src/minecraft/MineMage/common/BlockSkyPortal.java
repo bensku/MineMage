@@ -17,6 +17,7 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import BenskuLib.common.*;
 
 
 
@@ -287,10 +288,10 @@ public class BlockSkyPortal extends BlockBreakable
                  EntityPlayerMP thePlayer = (EntityPlayerMP) par5Entity;
                  if (thePlayer.timeUntilPortal == 0)
                  {
-         			if (thePlayer.dimension != 25)
+         			if (thePlayer.dimension != DimensionLib.getDimId(1))
                      {
          				thePlayer.timeUntilPortal = 10;
-         				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 25, new TeleporterSky(thePlayer.mcServer.worldServerForDimension(25)));
+         				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, DimensionLib.getDimId(1), new TeleporterSky(thePlayer.mcServer.worldServerForDimension(DimensionLib.getDimId(1))));
                      } else
                      {
                      	thePlayer.timeUntilPortal = 10;

@@ -1,5 +1,6 @@
 package MineMage.common;
 
+import BenskuLib.common.DimensionLib;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -10,7 +11,13 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderEnd;
+import net.minecraft.world.gen.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.WorldChunkManagerHell;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderHell;
 
 public class WorldProviderSky extends WorldProvider
@@ -20,8 +27,8 @@ public class WorldProviderSky extends WorldProvider
      */
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.sky, 0.5F, 0.0F);
-        this.dimensionId = 25;
+        this.worldChunkMgr = new WorldChunkManagerHell(MainMod.BiomeSky, 0.5F, 0.0F);
+        this.dimensionId = DimensionLib.getDimId(1);
         this.hasNoSky = false;
     }
 
@@ -30,7 +37,7 @@ public class WorldProviderSky extends WorldProvider
      */
     public IChunkProvider createChunkGenerator()
     {
-        return new ChunkProviderHell(this.worldObj, this.worldObj.getSeed());
+        return new ChunkProviderSky(this.worldObj, this.worldObj.getSeed(), hasNoSky = false);
     }
 
     /**
@@ -58,7 +65,7 @@ public class WorldProviderSky extends WorldProvider
     }
 
     /**
-     * True if the player can respawn in this dimension (true = overworld, false = nether).
+     * True if the player can respawn in this dimension (true = overworld, false = nether, end).
      */
     public boolean canRespawnHere()
     {
